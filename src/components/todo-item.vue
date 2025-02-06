@@ -1,7 +1,17 @@
 <template>
   <ul>
-    <li v-for="todo in todoList" :key="todo" data-test="todo-item">
-      <h4>{{ todo.title }}</h4>
+    <li
+      v-for="todo in todoList"
+      :key="todo"
+      data-test="todo-item"
+      :class="todo.completed ? 'completed' : ''"
+    >
+      <span>{{ todo.title }}</span>
+      <input
+        type="checkbox"
+        v-model="todo.completed"
+        data-test="todo-completed"
+      />
     </li>
   </ul>
   <form data-test="form" @submit.prevent="addNewTodo">
@@ -38,3 +48,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.completed {
+  color: green;
+}
+</style>
